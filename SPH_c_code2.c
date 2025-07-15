@@ -19,7 +19,7 @@ const double dt             = 5e-5;
 const int    steps          = 10000;
 const double rho0           = 1000.0;
 const double k              = 100.0;
-const double visc           = 1e-3;
+const double visc           = 10;
 const double gacc           = 9.8;
 const double eps            = 1e-6;
 const int    step_per_frame = 10;
@@ -91,6 +91,21 @@ int count_barrier(){
     }
     return cnt * 2;  // 左側と右側
 }
+
+// 平均密度計算
+void calculate_average_rho(int Nf){
+    double sum = 0.0;
+
+    // 流体粒子のみを対象に密度を合計
+    for(int i = 0; i < Nf; i++){
+        sum += dens[i];
+    }
+
+    // 平均値を計算
+    double average_rho = sum / Nf;
+    printf("Average rho (density) of fluid particles: %.3f\n", average_rho);
+}
+
 
 // 密度計算
 void calc_density(){
@@ -396,5 +411,6 @@ int main(){
 
     system("ffmpeg -y -f image2 -framerate 60 -i temp/frame%04d.ppm -loop 0 hole_with_boundary.gif");
     printf("Saved -> hole_with_boundary.gif\n");
+    calculate_average_rho(Nf);
     return 0;
 }
