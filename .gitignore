@@ -42,6 +42,8 @@
 
 #tempfolder
 temp/
+frames/
 
 #output
-.gif
+*.gif
+*.ppm
