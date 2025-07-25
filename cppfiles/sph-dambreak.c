@@ -17,7 +17,7 @@ int main(){
   step_per_frame   = 10;
   rho0             = 1000.0;
   k                = 100.0;
-  visc             = 10.0;
+  visc             = 100.0;
   gacc             = 9.8;
   eps              = 1e-6;
   barrier_x_min    = 0.48;
